@@ -4,11 +4,27 @@ public class Drzava {
     private int id;
     private String naziv;
     private Grad glavniGrad;
+    private boolean kraljevska;
+
+    public Drzava(int id, String naziv, Grad glavniGrad, boolean kraljevska) {
+        this.id = id;
+        this.naziv = naziv;
+        this.glavniGrad = glavniGrad;
+        this.kraljevska = kraljevska;
+    }
 
     public Drzava(int id, String naziv, Grad glavniGrad) {
         this.id = id;
         this.naziv = naziv;
         this.glavniGrad = glavniGrad;
+    }
+
+    public boolean isKraljevska() {
+        return kraljevska;
+    }
+
+    public void setKraljevska(boolean kraljevska) {
+        this.kraljevska = kraljevska;
     }
 
     public Drzava() {

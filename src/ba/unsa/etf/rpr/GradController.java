@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -14,6 +16,7 @@ public class GradController {
     public TextField fieldNaziv;
     public TextField fieldBrojStanovnika;
     public ChoiceBox<Drzava> choiceDrzava;
+    public CheckBox cbKraljevski;
     public ObservableList<Drzava> listDrzave;
     private Grad grad;
 
@@ -33,6 +36,7 @@ public class GradController {
             for (Drzava drzava : listDrzave)
                 if (drzava.getId() == grad.getDrzava().getId())
                     choiceDrzava.getSelectionModel().select(drzava);
+            cbKraljevski.setSelected(grad.isKraljevski());
         } else {
             choiceDrzava.getSelectionModel().selectFirst();
         }
@@ -76,12 +80,23 @@ public class GradController {
             fieldBrojStanovnika.getStyleClass().add("poljeIspravno");
         }
 
+        if(!choiceDrzava.getValue().isKraljevska() && cbKraljevski.isSelected()) {
+            sveOk = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText("Neispravni podaci");
+            alert.setContentText("Država " + choiceDrzava.getValue() + " nije kraljevska država");
+            alert.setResizable(true);
+            alert.show();
+        }
+
         if (!sveOk) return;
 
         if (grad == null) grad = new Grad();
         grad.setNaziv(fieldNaziv.getText());
         grad.setBrojStanovnika(Integer.parseInt(fieldBrojStanovnika.getText()));
         grad.setDrzava(choiceDrzava.getValue());
+        grad.setKraljevski(cbKraljevski.isSelected());
         Stage stage = (Stage) fieldNaziv.getScene().getWindow();
         stage.close();
     }

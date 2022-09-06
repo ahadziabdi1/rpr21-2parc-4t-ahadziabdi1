@@ -131,7 +131,7 @@ class GlavnaControllerTest {
         assertEquals("280200", fieldBrojStanovnika.getText());
 
         robot.clickOn("#fieldBrojStanovnika");
-        robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
+        robot.press(KeyCode.COMMAND).press(KeyCode.A).release(KeyCode.A).release(KeyCode.COMMAND);
         robot.write("123456");
 
         // Klik na dugme Ok

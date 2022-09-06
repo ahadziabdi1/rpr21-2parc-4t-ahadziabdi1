@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class DrzavaController {
     public TextField fieldNaziv;
     public ChoiceBox<Grad> choiceGrad;
+    public CheckBox cbKraljevska;
     private Drzava drzava;
     private ObservableList<Grad> listGradovi;
 
@@ -27,6 +29,7 @@ public class DrzavaController {
         if (drzava != null) {
             fieldNaziv.setText(drzava.getNaziv());
             choiceGrad.getSelectionModel().select(drzava.getGlavniGrad());
+            cbKraljevska.setSelected(drzava.isKraljevska());
         } else {
             choiceGrad.getSelectionModel().selectFirst();
         }
@@ -53,6 +56,7 @@ public class DrzavaController {
         if (drzava == null) drzava = new Drzava();
         drzava.setNaziv(fieldNaziv.getText());
         drzava.setGlavniGrad(choiceGrad.getSelectionModel().getSelectedItem());
+        drzava.setKraljevska(cbKraljevska.isSelected());
         closeWindow();
     }
 

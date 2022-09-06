@@ -12,6 +12,7 @@
 
 
 <?import java.net.URL?>
+<?import javafx.scene.control.CheckBox?>
 <GridPane hgap="5.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@/css/forme.css" />
@@ -30,7 +31,9 @@
       <TextField fx:id="fieldNaziv" GridPane.columnIndex="1" />
       <Label text="Glavni grad:" GridPane.rowIndex="1" />
       <ChoiceBox fx:id="choiceGrad" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <Label text="Kraljevska država:" GridPane.rowIndex="2" />
+      <CheckBox fx:id="cbKraljevska" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
         <buttons>
           <Button fx:id="btnOk" onAction="#clickOk" mnemonicParsing="false" text="Ok" />
           <Button fx:id="btnCancel" onAction="#clickCancel" mnemonicParsing="false" text="Cancel" />

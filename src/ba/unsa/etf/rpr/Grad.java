@@ -4,7 +4,29 @@ public class Grad {
     private int id;
     private String naziv;
     private int brojStanovnika;
+    private boolean kraljevski;
     private Drzava drzava;
+
+    public Grad(int id, String naziv, int brojStanovnika, Drzava drzava, boolean kraljevski) {
+        if(!drzava.isKraljevska() && kraljevski == true) {
+            throw new NotAKingdomException("Država " + drzava.getNaziv() + " nije kraljevska država");
+        }
+        this.id = id;
+        this.naziv = naziv;
+        this.brojStanovnika = brojStanovnika;
+        this.drzava = drzava;
+        this.kraljevski = kraljevski;
+    }
+
+    public boolean isKraljevski() {
+        return kraljevski;
+    }
+
+    public void setKraljevski(boolean kraljevski) {
+        if(drzava == null) throw new NotAKingdomException("Država null nije kraljevska država");
+        if(!drzava.isKraljevska() && kraljevski == true) throw new NotAKingdomException("Država " + drzava.getNaziv() + " nije kraljevska država");
+        this.kraljevski = kraljevski;
+    }
 
     public Grad(int id, String naziv, int brojStanovnika, Drzava drzava) {
         this.id = id;
